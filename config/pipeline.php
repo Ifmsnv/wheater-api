@@ -34,10 +34,10 @@ $app->pipe(ServerUrlMiddleware::class);
 // - $app->pipe('/docs', $apiDocMiddleware);
 // - $app->pipe('/files', $filesMiddleware);
 
-$app->pipe(new JwtAuthentication([
+$app->pipe('/susdysd', new JwtAuthentication([
     "secret" => "supersecretkeyyoushouldnotcommittogithub",
     "path" => ["/"],
-    "passthrough" => ["/token"],
+    "passthrough" => ["/token", '/ping'],
     "error" => function ($request, $response, $arguments) {
         $data["status"] = "error";
         $data["message"] = $arguments["message"];
