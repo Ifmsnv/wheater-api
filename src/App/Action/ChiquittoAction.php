@@ -20,9 +20,9 @@ class ChiquittoAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         /* @var $usuario Usuario */
-        $usuario = $this->entityManager->find(Usuario::class, 1);
-        return new JsonResponse($usuario->toArray());
+        //$usuario = $this->entityManager->find(Usuario::class, 1);
+        //return new JsonResponse($usuario);
 
-        //return new JsonResponse($this->entityManager->getRepository(Usuario::class)->findAll());
+        return new JsonResponse($this->entityManager->getRepository(Usuario::class)->findAll());
     }
 }

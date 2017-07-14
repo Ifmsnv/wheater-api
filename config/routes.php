@@ -31,3 +31,4 @@ $app->get('/', App\Action\HomePageAction::class, 'home');
 $app->post('/token', App\Action\TokenAction::class, 'token');
 $app->get('/ping', App\Action\PingAction::class, 'api.ping');
 $app->get('/chiquitto', App\Action\ChiquittoAction::class, 'chiquitto');
+$app->post('/historico/add', App\Action\HistoricoAddAction::class, 'historico.add');

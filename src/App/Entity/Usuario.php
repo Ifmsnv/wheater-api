@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="usuario")
  */
-class Usuario
+class Usuario implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -31,6 +31,16 @@ class Usuario
      * @ORM\Column(name="senha", type="string", length=32)
      */
     private $senha;
+
+    function jsonSerialize()
+    {
+        return [
+            'idUsuario' => $this->getIdUsuario(),
+            'nome' => $this->getNome(),
+            'email' => $this->getEmail(),
+            'senha' => $this->getSenha(),
+        ];
+    }
 
     public function getId()
     {
@@ -83,16 +93,6 @@ class Usuario
     public function setSenha($senha)
     {
         $this->senha = $senha;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'idUsuario' => $this->getIdUsuario(),
-            'nome' => $this->getNome(),
-            'email' => $this->getEmail(),
-            'senha' => $this->getSenha(),
-        ];
     }
 
     /**
