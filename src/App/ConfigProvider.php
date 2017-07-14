@@ -37,7 +37,9 @@ class ConfigProvider
                 Action\PingAction::class => Action\PingAction::class,
             ],
             'factories'  => [
+                Action\ChiquittoAction::class => Action\ChiquittoFactory::class,
                 Action\HomePageAction::class => Action\HomePageFactory::class,
+                Action\TokenAction::class => Action\TokenFactory::class,
             ],
         ];
     }
