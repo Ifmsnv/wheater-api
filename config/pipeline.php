@@ -1,6 +1,7 @@
 <?php
 
 use Slim\Middleware\JwtAuthentication;
+use Zend\Expressive\Helper\BodyParams\BodyParamsMiddleware;
 use Zend\Expressive\Helper\ServerUrlMiddleware;
 use Zend\Expressive\Helper\UrlHelperMiddleware;
 use Zend\Expressive\Middleware\ImplicitHeadMiddleware;
@@ -34,8 +35,10 @@ $app->pipe(ServerUrlMiddleware::class);
 // - $app->pipe('/docs', $apiDocMiddleware);
 // - $app->pipe('/files', $filesMiddleware);
 
-$app->pipe('/susdysd', new JwtAuthentication([
-    "secret" => "supersecretkeyyoushouldnotcommittogithub",
+$app->pipe(BodyParamsMiddleware::class);
+
+$app->pipe(new JwtAuthentication([
+    "secret" => "IFMSNV",
     "path" => ["/"],
     "passthrough" => ["/token", '/ping'],
     "error" => function ($request, $response, $arguments) {

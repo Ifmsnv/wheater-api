@@ -2,11 +2,11 @@
 
 namespace App\Action;
 
+use App\Entity\Usuario;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 use Doctrine\ORM\EntityManager;
-use App\Entity\Foo;
 
 class ChiquittoAction
 {
@@ -19,6 +19,10 @@ class ChiquittoAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        return new JsonResponse($this->entityManager->find(Foo::class, 1));
+        /* @var $usuario Usuario */
+        $usuario = $this->entityManager->find(Usuario::class, 1);
+        return new JsonResponse($usuario->toArray());
+
+        //return new JsonResponse($this->entityManager->getRepository(Usuario::class)->findAll());
     }
 }
